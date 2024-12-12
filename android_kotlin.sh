@@ -47,26 +47,41 @@ get_device_choice() {
     echo -e "${red}No devices found.${reset}"
   elif [ "$device_count" -eq "1" ]; then
     selected_device=${devices[0]}
+    device_exists=true
     valid_device_choice=true
   else
     echo -e "${yellow}Multiple devices found. Select one:${reset}"
     while true; do
       for i in "${!devices[@]}"; do
-        echo "$((i + 1))) ${devices[$i]}"
+        echo "($((i + 1))) ${devices[$i]}"
       done
       echo
+      echo "(q) Quit"
       echo -n "--> "
       read choice
-      if [ "$choice" -le "$device_count" ]; then
-        selected_device=${devices[$((choice - 1))]}
-        valid_device_choice=true
-        break
-      else
-        echo -e "${red}Invalid selection. Try again.${reset}"
+
+      if [[ "$choice" =~ ^[0-9]+$ ]]; then
+        if [ "$choice" -le "$device_count" ]; then
+          selected_device=${devices[$((choice - 1))]}
+          valid_device_choice=true
+          break
+        fi
       fi
+
+      if [[ $choice == "q" || $choice == "Q" || $choice == "exit" || $choice == "Exit" ]]; then
+        return
+      fi
+
+      clear
+      echo -e "${red}Invalid selection. Try again.${reset}\n"
+
+      echo -e "${yellow}Multiple devices found. Select one:${reset}"
     done
   fi
-  echo -e "${green}Selected device: $selected_device${reset}"
+
+  if [ "$device_exists" == true ]; then
+    echo -e "${green}Selected device: $selected_device${reset}"
+  fi
 }
 
 # check the type of the device
