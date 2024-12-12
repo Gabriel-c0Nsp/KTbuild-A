@@ -51,15 +51,17 @@ get_device_choice() {
     valid_device_choice=true
   else
     echo -e "${yellow}Multiple devices found. Select one:${reset}"
+
     while true; do
       for i in "${!devices[@]}"; do
         echo "($((i + 1))) ${devices[$i]}"
       done
-      echo
-      echo "(q) Quit"
+
+      echo -e "\n(q) Quit"
       echo -n "--> "
       read choice
 
+      # checks if the input is a number
       if [[ "$choice" =~ ^[0-9]+$ ]]; then
         if [ "$choice" -le "$device_count" ]; then
           selected_device=${devices[$((choice - 1))]}
@@ -74,7 +76,6 @@ get_device_choice() {
 
       clear
       echo -e "${red}Invalid selection. Try again.${reset}\n"
-
       echo -e "${yellow}Multiple devices found. Select one:${reset}"
     done
   fi
@@ -94,8 +95,7 @@ check_device() {
 }
 
 build_app() {
-  echo
-  echo "Building the APK..."
+  echo -e "\nBuilding the APK..."
   ./gradlew assembleDebug
 
   echo "Installing the APK on the device..."
@@ -107,10 +107,11 @@ build_app() {
 
 # display status messages if everything goes well
 display_ok_messages() {
-  echo
-  echo -e "${green}App successfully built${reset}"
+  echo -e "\n${green}App successfully built${reset}"
+
   if echo "$selected_device" | grep -q "emulator"; then
     emulated_device=true
+
     echo -e "${yellow}You can see the updated app on your emulated device${reset}"
   else
     echo -e "${yellow}You can see the updated app on your physical device${reset}"
@@ -122,6 +123,7 @@ if [ "$found" == true ]; then
   get_application_name
   get_device_choice
   check_device
+
   if [ "$valid_device_choice" == true ]; then
     build_app
     display_ok_messages
