@@ -27,13 +27,13 @@ KTbuild-A can also be helpful for users who wish to explore the process of devel
     ```bash
     chmod +x ktbuild.sh
     ```
-4. Since this script navigates through your directories, you need to run it using the source command:
+4. Now you can run the script using the following command:
     ```bash
-    source ktbuild.sh
+    ./ktbuild.sh
     ```
 
 ## Recommendations
-You can easily run this script by simply just typing `ktbuild` (or whatever you want) in your terminal, by setting aliases to your `.bashrc` or `.bash_profile`.
+You can easily run this script by simply just typing `ktbuild` (or whatever you want) in your terminal, by setting an alias to your `.bashrc` or `.bash_profile`. If you're not using bash, you can search how to create aliases for you're specific shell.
 
 First, you need to identify the current directory of the repository. This can be achieved with the following command:
    ```bash
@@ -45,7 +45,7 @@ Finally, you can add the following instructions to your `.bashrc` or `.zshrc` fi
 
    ```bash
    export PATH=$PATH:{current_directory}/KTbuild-A/
-   alias ktbuild='source {current_directory}/KTbuild-A/ktbuild.sh'
+   alias ktbuild='ktbuild.sh'
    ```
 Don't forget to change the path in the `export PATH=...` command as needed.
 
