@@ -54,7 +54,7 @@ device_not_found() {
       if [[ -z "$emulator_path" ]]; then
         echo -e "${red}ERROR: no AVDS found!${reset}"
         echo -e "consider installing the Android SDK and creating an AVD."
-        return
+        exit
       fi
 
       local avds=($($emulator_path -list-avds | tail -n +2))
@@ -87,7 +87,7 @@ device_not_found() {
           fi
 
           if [[ $choice == "q" || $choice == "Q" || $choice == "exit" || $choice == "Exit" ]]; then
-            return
+            exit
           fi
 
           clear
@@ -98,7 +98,7 @@ device_not_found() {
 
       break
     elif [[ $choice == "n" || $choice == "N" ]]; then
-      return
+      exit
     else
       clear
       echo -e "${red}Invalid input. Try again${reset}\n"
@@ -143,7 +143,7 @@ get_device_choice() {
       fi
 
       if [[ $choice == "q" || $choice == "Q" || $choice == "exit" || $choice == "Exit" ]]; then
-        return
+        exit
       fi
 
       clear
