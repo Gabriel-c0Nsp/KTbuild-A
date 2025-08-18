@@ -8,6 +8,42 @@ green='\e[0;32m'
 yellow='\e[0;33m'
 reset='\e[0m'
 
+VERSION="1.0"
+SCRIPT_NAME=$(basename "$0")
+
+# simple flags the user may want to use (-h -v)
+case "$1" in
+  -h | --help)
+    echo "
+    KTbuild-A is a tool designed to assist Android programmers
+    on the command line. It is particularly useful in scenarios
+    where the user wants to build one of their projects quickly
+    without the need to open an IDE. The "A" in KTbuild stands
+    for Android.
+
+    KTbuild-A can also be helpful for users who wish to explore
+    the process of developing an Android application without relying
+    on a dedicated IDE.
+
+    Usage: $SCRIPT_NAME [-h | -v]
+
+    Version: $VERSION"
+    exit 0
+  ;;
+  -v | --version)
+    echo "v$VERSION"
+    exit 0
+  ;;
+  *)
+    if test -n "$1"
+    then
+    echo "Invalid option. Try the help command for more usage information!"
+    echo "Type: $SCRIPT_NAME --help"
+    exit 1
+    fi
+  ;;
+esac
+
 # go to the root directory
 go_to_root() {
   found=false
