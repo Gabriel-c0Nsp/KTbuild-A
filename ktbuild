@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 current_path=$(pwd)
 
