@@ -25,28 +25,18 @@ KTbuild-A can also be helpful for users who wish to explore the process of devel
     ```
 3. Make sure the script has executable permissions. If not, run the following command:
     ```bash
-    chmod +x ktbuild.sh
+    chmod +x ktbuild
     ```
 4. Now you can run the script using the following command:
     ```bash
-    ./ktbuild.sh
+    ./ktbuild
     ```
 
 ## Recommendations
-You can easily run this script by simply just typing `ktbuild` (or whatever you want) in your terminal, by setting an alias to your `.bashrc` or `.bash_profile`. If you're not using bash, you can search how to create aliases for you're specific shell.
+You can easily run this script by simply just typing `ktbuild` (without the full path to it) from anywhere in your terminal, by copying the script to a directory in your `$PATH`, such as `/usr/local/bin`.
 
-First, you need to identify the current directory of the repository. This can be achieved with the following command:
-   ```bash
-   pwd
-   ```
-This output is important for the following process. The output of the `pwd` command is personal and will be referred in this documentation as `{current_directory}` for generalization purposes.
+```bash
+sudo cp ktbuild /usr/local/bin
+```
 
-Finally, you can add the following instructions to your `.bashrc` or `.zshrc` file:
-
-   ```bash
-   export PATH=$PATH:{current_directory}/KTbuild-A/
-   alias ktbuild='ktbuild.sh'
-   ```
-Don't forget to change the path in the `export PATH=...` command as needed.
-
-Now you can try the `ktbuild` command anywhere in your terminal and check the result.
+Now you can try the `ktbuild` command anywhere on your terminal and check the result.
