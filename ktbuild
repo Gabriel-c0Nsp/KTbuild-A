@@ -1,5 +1,18 @@
 #!/bin/sh
 
+########################################################################
+#                                                                      #
+# ktbuild: Build Android projects (with Kotlin)                        # 
+#                                                                      #
+# Author: Gabriel Silva Aires (gabrielsilvaaires62@gmail.com)          #
+# Date: 09/14/2024                                                     #
+#                                                                      #
+# Description: Build Android projects without the need of an IDE.      #
+#                                                                      #
+# use: ktbuild                                                         #
+#                                                                      #
+########################################################################
+
 current_path=$(pwd)
 
 # Colors of the messages
